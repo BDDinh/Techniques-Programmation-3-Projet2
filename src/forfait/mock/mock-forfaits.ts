@@ -1,4 +1,4 @@
-import {Forfait} from '../schema/forfait.schema';
+import {Forfait} from '../schemas/forfait.schema';
 
 export const FORFAITS = [
 //export const FORFAITS: Forfait[] = [
