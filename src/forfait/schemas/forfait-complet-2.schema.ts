@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const { Schema } = mongoose;
 
-export const CatSchema = new Schema({
+export const ForfaitSchema = new Schema({
     destination: { type: String },
     villeDepart: { type: String },
     dateDepart: { type: String },
@@ -12,8 +12,8 @@ export const CatSchema = new Schema({
     hotel: { type: {
                  nom: { type: String },
                  coordonnees: { type: String },
-                 nombreEtoiles: { type: String },
-                 nombreChambres: { type: String },
+                 nombreEtoiles: { type: Number },
+                 nombreChambres: { type: Number },
                  caracteristiques:  [{ type: String }]
            }}
 });

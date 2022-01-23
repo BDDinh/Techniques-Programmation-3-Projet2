@@ -2,17 +2,21 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ForfaitService } from './forfait.service';
 import { CreateForfaitDto } from './dto/create-forfait.dto';
 import { UpdateForfaitDto } from './dto/update-forfait.dto';
+import { LoadDataInMongoDbserviceService } from './load-data-in-mongo-dbservice.service';
+
 
 @Controller('forfait')
 export class ForfaitController {
-  constructor(private readonly forfaitService: ForfaitService) {}
+  constructor(private readonly forfaitService: ForfaitService, 
+             private readonly loadDataInMongoDbserviceService: LoadDataInMongoDbserviceService) {}
 
+  /*           
   @Post()
   create(@Body() createForfaitDto: CreateForfaitDto) {
     return this.forfaitService.create(createForfaitDto);
   }
 
-  @Get()
+  @Get("/all")
   findAll() {
     return this.forfaitService.findAll();
   }
@@ -30,5 +34,13 @@ export class ForfaitController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.forfaitService.remove(+id);
+  }
+  */
+
+  // http://localhost:3000/forfait/loadData
+  @Get("/loadData")
+  loadData(): string {
+    this.loadDataInMongoDbserviceService.loadData();
+    return "loadData fini";
   }
 }
