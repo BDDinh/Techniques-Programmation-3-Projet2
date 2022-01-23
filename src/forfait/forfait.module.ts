@@ -3,12 +3,12 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ForfaitService } from './forfait.service';
 import { ForfaitController } from './forfait.controller';
 import { Forfait, ForfaitSchema } from './schemas/forfait.schema';
-import { LoadDataInMongoDbserviceService } from './load-data-in-mongo-dbservice.service';
+import { LoadDataInMongoDbservice} from './load-data-in-mongo-dbservice.service';
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: Forfait.name, schema: ForfaitSchema }])],
   controllers: [ForfaitController],
-  providers: [ForfaitService, LoadDataInMongoDbserviceService]
+  providers: [ForfaitService, LoadDataInMongoDbservice]
 })
 export class ForfaitModule {}
 

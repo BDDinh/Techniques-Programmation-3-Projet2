@@ -5,7 +5,7 @@ import { Forfait, ForfaitSchema } from './schemas/forfait.schema';
 import { FORFAITS } from './mock/mock-forfaits';
 
 @Injectable()
-export class LoadDataInMongoDbserviceService {
+export class LoadDataInMongoDbservice{
 
     async loadData(): Promise<void>{
       
