@@ -19,7 +19,7 @@ export class ForfaitController {
   // http://localhost:3000/forfait/loadData
   @Get("/loadData")
   loadData(): string {
-    //this.loadDataInMongoDbserviceService.loadData2();
+    //this.loadDataInMongoDbserviceService.loadData();
     return "loadData fini";
   }
 
