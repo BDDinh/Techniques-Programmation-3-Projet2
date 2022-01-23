@@ -7,25 +7,53 @@ import {
     IsNotEmptyObject,
     IsObject,
     IsString,
+    IsNumber,
+    IsBoolean,
+    IsDateString,
+    IsPositive
   } from 'class-validator';
 import { Type } from 'class-transformer';
 import { CreateHotelDto } from './create-hotel.dto';
 
 export class CreateForfaitDto {
-    readonly destination: string;
-    readonly villeDepart: number;
-    readonly dateDepart: string;
 
-    readonly dateRetour: string;
-    readonly prix: string;
-    readonly rabais: string;
-    readonly vedette: string;
+  @IsNotEmpty({ message: "Le nom de la ville doit être spécifié"})
+  @IsString()
+  readonly destination: string;
 
-    @Type(() => CreateHotelDto)
-    @IsObject()
-    @IsNotEmptyObject()
-    @ValidateNested()
-    readonly hotel: CreateHotelDto;
+  @IsNotEmpty({
+    message: "Le nom de la ville doit être spécifié"
+    })
+  @IsString()
+  readonly villeDepart: string;
+
+  @IsNotEmpty()
+  @IsDateString()
+  readonly dateDepart: string;
+
+  @IsNotEmpty()
+  @IsDateString()
+  readonly dateRetour: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  @IsPositive()
+  readonly prix: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  @IsPositive()
+  readonly rabais: number;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  readonly vedette: boolean;
+
+  @Type(() => CreateHotelDto)
+  @IsObject()
+  @IsNotEmptyObject()
+  @ValidateNested()
+  readonly hotel: CreateHotelDto;
 }
 
 /*
