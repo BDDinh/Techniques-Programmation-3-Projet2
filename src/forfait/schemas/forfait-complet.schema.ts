@@ -30,11 +30,17 @@ export class Forfait {
     @Prop(raw({
         nom: { type: String },
         coordonnees: { type: String },
-        nombreEtoiles: { type: String },
-        nombreChambres: { type: String },
+        nombreEtoiles: { type: Number },
+        nombreChambres: { type: Number },
         caracteristiques:  [{ type: String }]
       }))
-    hotel: any;
+    hotel: {
+        nom: string,
+        coordonnees: string,
+        nombreEtoiles: number,
+        nombreChambres: number,
+        caracteristiques: string[]
+      };
 
 }
 export const ForfaitSchema = SchemaFactory.createForClass(Forfait);
@@ -50,24 +56,5 @@ https://github.com/nestjs/mongoose/blob/master/tests/e2e/schema-definitions.fact
 https://www.linkedin.com/pulse/mongoose-harshal-yeole/
 var schema = new mongoose.Schema({ name: 'string', size: 'string' });
 var Tank = mongoose.model('Tank', schema);
-
-import { Schema } from "@nestjs/mongoose";
-
-export const CatSchema = new Schema({
-    destination: { type: String },
-    villeDepart: { type: String },
-    dateDepart: { type: String },
-    dateRetour: { type: String },
-    prix: { type: Number },
-    rabais: { type: Number },
-    vedette: { type: Boolean },
-    hotel: { type: {
-                 nom: { type: String },
-                 coordonnees: { type: String },
-                 nombreEtoiles: { type: String },
-                 nombreChambres: { type: String },
-                 caracteristiques:  [{ type: String }]
-           }}
-});
 
 */
