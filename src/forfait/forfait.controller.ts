@@ -36,6 +36,18 @@ export class ForfaitController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateForfaitDto: UpdateForfaitDto) {
+    /*
+     @Patch('/:id')
+      updateUser(@Body() body: UpdateUserDto) {} // <-- Use as type annotation
+
+    @Patch(':id')
+    @ApiCreatedResponse({ type: User })
+    update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+      return this.usersService.update(+id, updateUserDto);
+    }
+
+
+    */
     return this.forfaitService.update(+id, updateForfaitDto);
   }
 
