@@ -10,10 +10,17 @@ export class ForfaitController {
   constructor(private readonly forfaitService: ForfaitService, 
              private readonly loadDataInMongoDbserviceService: LoadDataInMongoDbserviceService) {}
 
-  /*           
+      
   @Post()
   create(@Body() createForfaitDto: CreateForfaitDto) {
     return this.forfaitService.create(createForfaitDto);
+  }
+
+  // http://localhost:3000/forfait/loadData
+  @Get("/loadData")
+  loadData(): string {
+    //this.loadDataInMongoDbserviceService.loadData2();
+    return "loadData fini";
   }
 
   @Get("/all")
@@ -34,13 +41,5 @@ export class ForfaitController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.forfaitService.remove(+id);
-  }
-  */
-
-  // http://localhost:3000/forfait/loadData
-  @Get("/loadData")
-  loadData(): string {
-    this.loadDataInMongoDbserviceService.loadData();
-    return "loadData fini";
   }
 }

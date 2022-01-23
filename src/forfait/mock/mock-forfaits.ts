@@ -1,7 +1,6 @@
 import {Forfait} from '../schemas/forfait.schema';
 
-export const FORFAITS = [
-//export const FORFAITS: Forfait[] = [
+export const FORFAITS: Forfait[] = [
     {
         destination : 'Mexique',
         villeDepart : 'Québec', 
