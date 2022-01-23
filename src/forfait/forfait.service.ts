@@ -8,15 +8,15 @@ import { Forfait, ForfaitlDocument } from './schemas/forfait.schema';
 @Injectable()
 export class ForfaitService {
   constructor(
-    @InjectModel(Forfait.name) private readonly catModel: Model<ForfaitlDocument>,
+    @InjectModel(Forfait.name) private readonly forfaitModel: Model<ForfaitlDocument>,
   ) {}
 
   create(createForfaitDto: CreateForfaitDto) {
     return 'This action adds a new forfait';
   }
 
-  findAll() {
-    return `This action returns all forfait`;
+  async findAll(): Promise<Forfait[]> {
+    return this.forfaitModel.find().exec();
   }
 
   findOne(id: number) {

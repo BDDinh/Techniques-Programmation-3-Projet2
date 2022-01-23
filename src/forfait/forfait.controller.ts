@@ -3,12 +3,12 @@ import { ForfaitService } from './forfait.service';
 import { CreateForfaitDto } from './dto/create-forfait.dto';
 import { UpdateForfaitDto } from './dto/update-forfait.dto';
 import { LoadDataInMongoDbserviceService } from './load-data-in-mongo-dbservice.service';
-
+import { Forfait } from './schemas/Forfait.schema';
 
 @Controller('forfait')
 export class ForfaitController {
   constructor(private readonly forfaitService: ForfaitService, 
-             private readonly loadDataInMongoDbserviceService: LoadDataInMongoDbserviceService) {}
+              private readonly loadDataInMongoDbserviceService: LoadDataInMongoDbserviceService) {}
 
       
   @Post()
@@ -23,8 +23,9 @@ export class ForfaitController {
     return "loadData fini";
   }
 
-  @Get("/all")
-  findAll() {
+  // http://localhost:3000/forfait/
+  @Get()
+  async findAll(): Promise<Forfait[]>  {
     return this.forfaitService.findAll();
   }
 
