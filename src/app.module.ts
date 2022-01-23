@@ -15,3 +15,5 @@ import { CatsModule } from './cats/cats.module';
 export class AppModule {}
 
 // https://github.com/nestjs/nest/tree/master/sample/06-mongoose/src
+// https://www.youtube.com/watch?v=GQxaobVvZ9s
+// https://auth0.com/blog/modern-full-stack-development-with-nestjs-react-typescript-and-mongodb-part-1/
