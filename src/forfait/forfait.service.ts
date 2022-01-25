@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateForfaitDto } from './dto/create-forfait.dto';
@@ -11,24 +11,43 @@ export class ForfaitService {
     @InjectModel(Forfait.name) private readonly forfaitModel: Model<ForfaitlDocument>,
   ) {}
 
-  create(createForfaitDto: CreateForfaitDto) {
-    return 'This action adds a new forfait';
+  async create(createForfaitDto: CreateForfaitDto): Promise<Forfait>  {
+    const createdForfait = await this.forfaitModel.create(createForfaitDto);
+    return createdForfait;
   }
 
   async findAll(): Promise<Forfait[]> {
     return this.forfaitModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} forfait`;
+  async findOne(id: number): Promise<Forfait> {
+    const forfait = await this.forfaitModel
+    .findById({ _id: id })
+    .exec();
+
+    if (!forfait) {
+      throw new NotFoundException(`Forfait #${id} introuvable`);
+    }
+
+    return forfait;
   }
 
-  update(id: number, updateForfaitDto: UpdateForfaitDto) {
-    return `This action updates a #${id} forfait`;
+  async update(id: number, updateForfaitDto: UpdateForfaitDto): Promise<Forfait> {
+    const existingForfait = await this.forfaitModel.findByIdAndUpdate(
+      { _id: id },
+      updateForfaitDto,
+    );
+
+    if (!existingForfait) {
+      throw new NotFoundException(`Forfait #${id} introuvable`);
+    }
+
+    return existingForfait;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} forfait`;
+  async remove(id: number) {
+    const deletedForfait = await this.forfaitModel.findByIdAndRemove(id);
+    return deletedForfait;
   }
 }
 
@@ -103,9 +122,4 @@ export class CustomersService {
     return deletedCustomer;
   }
 }
-
-
-
-
-
 */
