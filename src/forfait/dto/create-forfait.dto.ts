@@ -17,35 +17,33 @@ import { CreateHotelDto } from './create-hotel.dto';
 
 export class CreateForfaitDto {
 
-  @IsNotEmpty({ message: "Le nom de la ville doit être spécifié"})
-  @IsString()
+  @IsNotEmpty({ message: "La destination doit être spécifiée"})
+  @IsString({ message: "La destination doit être une chaîne de caractères"})
   readonly destination: string;
 
-  @IsNotEmpty({
-    message: "Le nom de la ville doit être spécifié"
-    })
-  @IsString()
+  @IsNotEmpty({message: "La villde départ doit être spécifié"})
+  @IsString({ message: "La villde départ doit être une chaîne de caractères"})
   readonly villeDepart: string;
 
-  @IsNotEmpty()
-  @IsDateString()
+  @IsNotEmpty({message: "La date de départ doit être spécifiée"})
+  @IsDateString({message: "La date de départ doit être une chaîne de caractères de format date"})
   readonly dateDepart: string;
 
-  @IsNotEmpty()
-  @IsDateString()
+  @IsNotEmpty({message: "La date de retour doit être spécifiée"})
+  @IsDateString({message: "La date de retour doit être une chaîne de caractères de format date"})
   readonly dateRetour: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({message: "Le prix doit être spécifié"})
   @IsNumber()
   @IsPositive()
   readonly prix: number;
 
-  @IsNotEmpty()
+  @IsNotEmpty({message: "Le rabais doit être spécifié"})
   @IsNumber()
   @IsPositive()
   readonly rabais: number;
 
-  @IsNotEmpty()
+  @IsNotEmpty({message: "L'indicateur Vedette doit être spécifié"})
   @IsBoolean()
   readonly vedette: boolean;
 

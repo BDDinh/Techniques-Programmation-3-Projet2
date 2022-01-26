@@ -15,26 +15,26 @@ import {
   } from 'class-validator';
 
 export class CreateHotelDto {
-    @IsNotEmpty({message: "Le nom de la ville doit être spécifié"})
+    @IsNotEmpty({message: "Le nom de l'hôtel doit être spécifié"})
     @IsString()
     readonly nom: string;
 
-    @IsNotEmpty()
+    @IsNotEmpty({message: "Les coordonnées de l'hôtel doit être spécifiées"})
     @IsString()
     readonly coordonnees: string;
 
-    @IsNotEmpty()
+    @IsNotEmpty({message: "L'évaluation en nombre d'étoiles de l'hôtel doit être spécifiée"})
     @IsNumber()
     @IsPositive()
     readonly nombreEtoiles: number;
 
-    @IsNotEmpty()
+    @IsNotEmpty({message: "Le nombre de chambres de l'hôtel doit être spécifié"})
     @IsNumber()
     @IsPositive()
     readonly nombreChambres: number;
 
     @IsArray()
-    @ArrayNotEmpty()
+    @ArrayNotEmpty({message: "Les caractéristiques de l'hôtel doivent être spécifiés"})
     readonly caracteristiques: string[];
 }
 
