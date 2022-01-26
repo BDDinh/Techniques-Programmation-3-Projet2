@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Put, Param, Delete } from '@nestjs/common';
 import { ForfaitService } from './forfait.service';
 import { CreateForfaitDto } from './dto/create-forfait.dto';
 import { UpdateForfaitDto } from './dto/update-forfait.dto';
@@ -34,20 +34,15 @@ export class ForfaitController {
     return this.forfaitService.findOne(+id);
   }
 
+/* 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateForfaitDto: UpdateForfaitDto) {
-    /*
-     @Patch('/:id')
-      updateUser(@Body() body: UpdateUserDto) {} // <-- Use as type annotation
+    return this.forfaitService.update(+id, updateForfaitDto);
+  } 
+*/
 
-    @Patch(':id')
-    @ApiCreatedResponse({ type: User })
-    update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-      return this.usersService.update(+id, updateUserDto);
-    }
-
-
-    */
+  @Put(':id')
+  update2(@Param('id') id: string, @Body() updateForfaitDto: UpdateForfaitDto) {
     return this.forfaitService.update(+id, updateForfaitDto);
   }
 

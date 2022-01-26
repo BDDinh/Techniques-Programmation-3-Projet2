@@ -17,6 +17,10 @@ export class LoadDataInMongoDbservice{
   
       const ForfaitModel = db.model('Forfait', ForfaitSchema ); 
 
+      ForfaitModel.createCollection().then(function(collection) {
+        console.log('Collection is created!');
+      });
+
       ForfaitModel.insertMany( FORFAITS ).then(function(){
         console.log("Succès !!! Data inserted")  // Success
       }).catch(function(error){
@@ -44,6 +48,8 @@ https://www.mongodb.com/developer/quickstart/cheat-sheet/
 
 https://progressivecoder.com/how-to-build-a-nestjs-mongodb-crud-application-using-mongoose/
 
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose
+
 
 mongosh
 
@@ -57,5 +63,51 @@ show dbs
 use test
 show collections
 db.Event.drop()
+
+*/
+
+/*
+db.createCollection("students", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: [ "name", "year", "major", "address" ],
+         properties: {
+            name: {
+               bsonType: "string",
+               description: "must be a string and is required"
+            },
+            year: {
+               bsonType: "int",
+               minimum: 2017,
+               maximum: 3017,
+               description: "must be an integer in [ 2017, 3017 ] and is required"
+            },
+            major: {
+               enum: [ "Math", "English", "Computer Science", "History", null ],
+               description: "can only be one of the enum values and is required"
+            },
+            gpa: {
+               bsonType: [ "double" ],
+               description: "must be a double if the field exists"
+            },
+            address: {
+               bsonType: "object",
+               required: [ "city" ],
+               properties: {
+                  street: {
+                     bsonType: "string",
+                     description: "must be a string if the field exists"
+                  },
+                  city: {
+                     bsonType: "string",
+                     description: "must be a string and is required"
+                  }
+               }
+            }
+         }
+      }
+   }
+})
 
 */
