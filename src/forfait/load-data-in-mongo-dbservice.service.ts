@@ -17,12 +17,86 @@ export class LoadDataInMongoDbservice{
   
       const ForfaitModel = db.model('Forfait', ForfaitSchema ); 
 
+      /*       
       ForfaitModel.createCollection().then(function(collection) {
         console.log('Collection is created!');
       });
+      */
+
+      ForfaitModel.forfaits.drop();
+
+      ForfaitModel.createCollection("forfaits", {
+         validator: {
+            $jsonSchema: {
+               bsonType: "object",
+               required: [ "destination", "villeDepart", "dateDepart", "dateRetour", "prix", "rabais", "vedette", "hotel" ],
+               properties: {
+                  destination: {
+                     bsonType: "string",
+                     description: "doit être une chaîne de caractères et est requise"
+                  },
+                  villeDepart: {
+                     bsonType: "string",
+                     description: "doit être une chaîne de caractères et est requise"
+                  },
+                  dateDepart: {
+                     bsonType: "string",
+                     description: "doit être une chaîne de caractères et est requise"
+                  },
+                  dateRetour: {
+                     bsonType: "string",
+                     description: "doit être une chaîne de caractères et est requise"
+                  },
+                  prix: {
+                     bsonType: [ "double" ],
+                     description: "doit être en format Double et est requis"
+                  },
+                  rabais: {
+                     bsonType: [ "double" ],
+                     description: "doit être en format Double et est requis"
+                  },
+                  vedette: {
+                     bsonType: [ "bool" ],
+                     description: "doit être en format booléen et est requis"
+                  },
+                  hotel: {
+                     bsonType: "object",
+                     required: [ "nom", "coordonnees", "nombreEtoiles", "nombreChambres", "caracteristiques" ],
+                     properties: {
+                        nom: {
+                           bsonType: "string",
+                           description: "doit être une chaîne de caractères et est requise"
+                        },
+                        coordonnees: {
+                           bsonType: "string",
+                           description: "doit être une chaîne de caractères et est requise"
+                        },
+                        nombreEtoiles: {
+                           bsonType: "decimal",
+                           description: "doit être en format décimal et est requis"
+                        },
+                        nombreChambres: {
+                           bsonType: "int",
+                           description: "doit être un entier et est requis"
+                        },
+                        caracteristiques: {
+                           bsonType: "array",
+                           items: {
+                              "bsonType": "string"
+                           },
+                           description: "doit être des chaînes de caractères et est requis"
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }).then(function(collection) {
+         console.log('Collection a été crée avec succès!');
+      });
 
       ForfaitModel.insertMany( FORFAITS ).then(function(){
-        console.log("Succès !!! Data inserted")  // Success
+        console.log("Succès !!! Data insérés")  // Success
       }).catch(function(error){
         console.log(error)                       // Failure
       }); 
@@ -109,5 +183,10 @@ db.createCollection("students", {
       }
    }
 })
+
+https://docs.mongodb.com/realm/schemas/types/
+https://docs.mongodb.com/manual/reference/operator/query/type/#std-label-document-type-available-types
+https://docs.mongodb.com/manual/reference/operator/query/type/#mongodb-query-op.-type
+
 
 */

@@ -34,5 +34,4 @@ https://dev.to/avantar/validating-nested-objects-with-class-validator-in-nestjs-
 
 https://www.codegrepper.com/code-examples/javascript/schema+for+nested+object+json+in+mongoos+nestjs
 
-
 */
