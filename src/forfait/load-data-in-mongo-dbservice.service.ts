@@ -81,6 +81,7 @@ export class LoadDataInMongoDbservice{
                         },
                         caracteristiques: {
                            bsonType: "array",
+                           uniqueItems: true,
                            items: {
                               "bsonType": "string"
                            },
