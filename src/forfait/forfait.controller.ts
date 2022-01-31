@@ -31,7 +31,7 @@ export class ForfaitController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.forfaitService.findOne(+id);
+    return this.forfaitService.findOne(id);
   }
 
 /* 
@@ -43,11 +43,11 @@ export class ForfaitController {
 
   @Put(':id')
   update2(@Param('id') id: string, @Body() updateForfaitDto: UpdateForfaitDto) {
-    return this.forfaitService.update(+id, updateForfaitDto);
+    return this.forfaitService.update(id, updateForfaitDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.forfaitService.remove(+id);
+    return this.forfaitService.remove(id);
   }
 }
