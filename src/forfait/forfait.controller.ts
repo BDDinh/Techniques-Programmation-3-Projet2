@@ -9,8 +9,6 @@ import { Forfait } from './schemas/Forfait.schema';
 export class ForfaitController {
   constructor(private readonly forfaitService: ForfaitService, 
               private readonly loadDataInMongoDbservice: LoadDataInMongoDbservice) {}
-
-      
   @Post()
   create(@Body() createForfaitDto: CreateForfaitDto) {
     return this.forfaitService.create(createForfaitDto);
