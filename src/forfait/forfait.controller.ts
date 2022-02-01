@@ -19,7 +19,7 @@ export class ForfaitController {
   // http://localhost:3000/forfait/loadData
   @Get("/loadData")
   loadData(): string {
-    //this.loadDataInMongoDbserviceService.loadData();
+    this.loadDataInMongoDbservice.loadData();
     return "loadData fini";
   }
 
@@ -29,6 +29,7 @@ export class ForfaitController {
     return this.forfaitService.findAll();
   }
 
+    // http://localhost:3000/forfait/{id}
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.forfaitService.findOne(id);
