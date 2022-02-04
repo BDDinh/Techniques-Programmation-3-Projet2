@@ -10,7 +10,9 @@ import {
     IsNumber,
     IsBoolean,
     IsDateString,
-    IsPositive
+    IsPositive,
+    Min,
+    Max
   } from 'class-validator';
 import { Type } from 'class-transformer';
 import { CreateHotelDto } from './create-hotel.dto';
@@ -35,12 +37,12 @@ export class CreateForfaitDto {
 
   @IsNotEmpty({message: "Le prix doit être spécifié"})
   @IsNumber()
-  @IsPositive()
+  @Min(1)
   readonly prix: number;
 
   @IsNotEmpty({message: "Le rabais doit être spécifié"})
   @IsNumber()
-  @IsPositive()
+  @Min(0)
   readonly rabais: number;
 
   @IsNotEmpty({message: "L'indicateur Vedette doit être spécifié"})

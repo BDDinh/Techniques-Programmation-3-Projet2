@@ -27,7 +27,7 @@ export class ForfaitController {
     return this.forfaitService.findAll();
   }
 
-    // http://localhost:3000/forfait/{id}
+  // http://localhost:3000/forfait/{id}
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.forfaitService.findOne(id);
