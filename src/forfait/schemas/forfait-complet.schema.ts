@@ -1,6 +1,5 @@
 import { Prop, raw, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
-import { Hotel, HotelSchema } from "./hotel.schema"
 
 export type ForfaitlDocument = Forfait & Document;
 
