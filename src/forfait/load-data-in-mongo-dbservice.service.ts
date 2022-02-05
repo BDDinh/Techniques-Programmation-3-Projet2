@@ -25,9 +25,9 @@ export class LoadForfaitsInMongo{
       ForfaitModel.createCollection();
 
       ForfaitModel.insertMany( FORFAITS ).then(function(){
-         return("Succès !!! Data forfaits insérés")  // Success
+         console.log("Succès !!! Data forfaits insérés")  // Success
       }).catch(function(error){
-         return(error)                               // Failure
+         console.log(error)                               // Failure
       });
       
 

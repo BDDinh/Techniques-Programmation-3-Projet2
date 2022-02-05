@@ -23,9 +23,9 @@ export class LoadVolsInMongoDb{
       VolModel.createCollection();
 
       VolModel.insertMany( VOLS ).then(function(){
-         return("Succès !!! Data vols insérés")  // Success
+         console.log("Succès !!! Data vols insérés")  // Success
       }).catch(function(error){
-         return(error)                           // Failure
+         console.log(error)                           // Failure
       });
 
     }// loadData
