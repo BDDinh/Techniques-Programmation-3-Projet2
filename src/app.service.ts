@@ -6,8 +6,9 @@ export class AppService {
 
   constructor(private loadVolsInMongoDb: LoadVolsInMongoDb, private loadForfaitsInMongo: LoadForfaitsInMongo){}
 
-  loadAllData(): Promise<void> {
+  loadAllData(): Promise<String> {
     return this.loadVolsInMongoDb.loadData()
-          .then( () =>  this.loadForfaitsInMongo.loadData() );
+          .then( () => this.loadForfaitsInMongo.loadData() )
+            .then( () => "Load data fini" );
   }// Fin loadAllData
 }
