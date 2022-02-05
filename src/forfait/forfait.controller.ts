@@ -2,24 +2,23 @@ import { Controller, Get, Post, Body, Patch, Put, Param, Delete } from '@nestjs/
 import { ForfaitService } from './forfait.service';
 import { CreateForfaitDto } from './dto/create-forfait.dto';
 import { UpdateForfaitDto } from './dto/update-forfait.dto';
-import { LoadDataInMongoDbservice } from './load-data-in-mongo-dbservice.service';
+import { LoadForfaitsInMongo } from './load-data-in-mongo-dbservice.service';
 import { Forfait } from './schemas/Forfait.schema';
 
 @Controller('forfait')
 export class ForfaitController {
   constructor(private readonly forfaitService: ForfaitService, 
-              private readonly loadDataInMongoDbservice: LoadDataInMongoDbservice) {}
+              private readonly loadForfaitsInMongo: LoadForfaitsInMongo) {}
   @Post()
   create(@Body() createForfaitDto: CreateForfaitDto) {
     return this.forfaitService.create(createForfaitDto);
   }
 
   // http://localhost:3000/forfait/loadData
-  @Get("/loadData")
+/*   @Get("/loadData")
   loadData(): string {
-    this.loadDataInMongoDbservice.loadData();
-    return "loadData fini";
-  }
+    this.loadForfaitsInMongo.loadData();
+  } */
 
   // http://localhost:3000/forfait/
   @Get()

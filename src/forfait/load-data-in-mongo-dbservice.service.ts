@@ -5,103 +5,32 @@ import { Forfait, ForfaitSchema } from './schemas/forfait.schema';
 import { FORFAITS } from './mock/mock-forfaits';
 
 @Injectable()
-export class LoadDataInMongoDbservice{
+export class LoadForfaitsInMongo{
 
-    async loadData(): Promise<void>{
+    async loadData():Promise<void>{
       
       const mongoose = require('mongoose');
       const dbLink = 'mongodb://localhost:27017/test';
       const db = await mongoose.createConnection(dbLink).asPromise();
       mongoose.set('debug', true);
+
       const session = await db.startSession();
-  
-      const ForfaitModel = db.model('Forfait', ForfaitSchema ); 
+      
+      const ForfaitModel = db.model('Forfait', ForfaitSchema );
 
-      /*       
-      ForfaitModel.createCollection().then(function(collection) {
-        console.log('Collection is created!');
-      });
-      */
+      if( ForfaitModel.forfaits ){
+         ForfaitModel.forfaits.drop();
+      }
 
-      ForfaitModel.forfaits.drop();
-
-      ForfaitModel.createCollection("forfaits", {
-         validator: {
-            $jsonSchema: {
-               bsonType: "object",
-               required: [ "destination", "villeDepart", "dateDepart", "dateRetour", "prix", "rabais", "vedette", "hotel" ],
-               properties: {
-                  destination: {
-                     bsonType: "string",
-                     description: "doit être une chaîne de caractères et est requise"
-                  },
-                  villeDepart: {
-                     bsonType: "string",
-                     description: "doit être une chaîne de caractères et est requise"
-                  },
-                  dateDepart: {
-                     bsonType: "string",
-                     description: "doit être une chaîne de caractères et est requise"
-                  },
-                  dateRetour: {
-                     bsonType: "string",
-                     description: "doit être une chaîne de caractères et est requise"
-                  },
-                  prix: {
-                     bsonType: [ "double" ],
-                     description: "doit être en format Double et est requis"
-                  },
-                  rabais: {
-                     bsonType: [ "double" ],
-                     description: "doit être en format Double et est requis"
-                  },
-                  vedette: {
-                     bsonType: [ "bool" ],
-                     description: "doit être en format booléen et est requis"
-                  },
-                  hotel: {
-                     bsonType: "object",
-                     required: [ "nom", "coordonnees", "nombreEtoiles", "nombreChambres", "caracteristiques" ],
-                     properties: {
-                        nom: {
-                           bsonType: "string",
-                           description: "doit être une chaîne de caractères et est requise"
-                        },
-                        coordonnees: {
-                           bsonType: "string",
-                           description: "doit être une chaîne de caractères et est requise"
-                        },
-                        nombreEtoiles: {
-                           bsonType: "decimal",
-                           description: "doit être en format décimal et est requis"
-                        },
-                        nombreChambres: {
-                           bsonType: "int",
-                           description: "doit être un entier et est requis"
-                        },
-                        caracteristiques: {
-                           bsonType: "array",
-                           uniqueItems: true,
-                           items: {
-                              "bsonType": "string"
-                           },
-                           description: "doit être des chaînes de caractères et est requis"
-                        }
-                     }
-                  }
-               }
-            }
-         }
-      }).then(function(collection) {
-         console.log('Collection a été crée avec succès!');
-      });
+      ForfaitModel.createCollection();
 
       ForfaitModel.insertMany( FORFAITS ).then(function(){
-        console.log("Succès !!! Data insérés")  // Success
+         return("Succès !!! Data forfaits insérés")  // Success
       }).catch(function(error){
-        console.log(error)                       // Failure
-      }); 
-    
+         return(error)                               // Failure
+      });
+      
+
     }// loadData
 }
 
