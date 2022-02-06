@@ -6,7 +6,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get("/loadData")
-  getHello(): Promise<String> {
+  loadData(): Promise<String> {
     return this.appService.loadAllData();
   }
 }
