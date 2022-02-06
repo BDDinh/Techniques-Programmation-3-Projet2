@@ -13,3 +13,5 @@ $ npm install
 ```bash
 $ npm run start
 ```
+## Load data
+Lancer dans un browser la commande: http://localhost:3000/loadData
